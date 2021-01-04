@@ -1,0 +1,213 @@
+<div class="main">
+      <div class="first-half">
+              <div>
+              <h1>{{"String Interpolation"}}</h1>
+              <hr>
+              <h2>Welcome {{name1}}</h2>
+              <h2>{{5+7}}</h2>
+              <h2>{{"Welcome " + name1}}</h2>
+              <!-- <h2>{{window.location.href}}</h2> -->
+              <h2>{{siteurl}}</h2>
+              <hr>
+              </div>
+
+
+              <div>
+              <h1>{{"Property Binding"}}</h1>
+              <hr>
+              <input id="log" type="text"  bind-disabled="false" >
+              <!-- id is a string attribute; it expects a string value -->
+              <!-- can directly assign value to id , but use of property is recommended -->
+              <input bind-id="myId" type="text" value="Sohail" bind-disabled="!flag">
+              <!-- alternative to square brackets "Write bind-id instead of [id]" -->
+              <input id="{{myId}}" type="text" [disabled]="isDisable()">
+              <!-- Can use String Interpolation for binding Property i,e,. 
+                  myId as its a String Attribute -->
+              <!-- Cannot use String Interpolation to bind property disabled attribute
+                  as its a boolean Attribute -->
+              <hr>
+              </div>
+
+              <div><h1>{{"Event Binding"}}</h1>
+              <hr>
+              <button bind-disabled="isDisable()" (click)="greet()" id="greet">Greet</button>
+              <!-- greet() is our event handler -->
+              <button bind-disabled="isDisable()" (click)="onClick($event)">EventName</button>
+              <!-- using $ event we can get all the property of DOM event -->
+              <button (click)="message2='Welcome Sohail'">Greet</button>
+              <p>{{message1}}</p>
+              <p>{{eventName}}</p>
+              <p>{{eventType}}</p>
+
+             
+              <!-- we have not assign any event handler for click event
+              instead we have write our statement inline in template -->
+              <p>{{message2}}</p>
+              <hr>
+              </div>
+
+              <div>
+              <h1>{{"Class Binding"}}</h1>    
+              <hr>
+
+              <h2 class="text-success">CodeEvolution</h2>
+              <!-- text-success is a class Name that is defined in CSS File with .class
+              So here we dont require to type any sqaure brackets or anything -->
+              <h2 class="{{successClass}}">CodeEvolution</h2>
+              <!-- successClass is a property in TS Class having value =text-success
+              so its need to be bind  -->
+              <h2 [class]="successClass">CodeEvolution</h2>
+              <h2 bind-class="successClass">CodeEvolution</h2>
+              <!-- line 38 can be write as line 39 -->
+              <h2 class="text-danger">CodeEvolution</h2>
+              <h2 class="text-special">CodeEvolution</h2>
+              <h2 class="text-special" [class]="successClass">CodeEvolution</h2>
+              <!-- So a regular class attribute becomes a dummy attribute in presence
+              of class binding  -->
+              <h2 [class.text-danger]="true">CodeEvolution_DangerClass</h2>
+              <h2 [class.text-danger]="false">CodeEvolution_DangerClass</h2>
+              <h2 [class.text-danger]="hasError">CodeEvolution_DangerClass</h2> 
+              <!-- hasError=true -->
+              <h2 [class.text-danger]="!false">CodeEvolution_DangerClass</h2>
+              <!-- Class text-danger is applied to the h2 element
+              if the value of expression is True -->
+              <h2 [ngClass]="messageClasses">CodeEvolution_NgClass</h2>
+              <!-- remember C is Capital in ngClass
+              Angular provides ngClass to conditionally apply multiple classes -->
+              <!-- 
+              public messageClasses = {
+                  "text-success": !this.hasError,
+                  "text-danger" : this.hasError,
+                  "text-special": this.isSpecial
+                } -->
+              <hr>
+              </div>
+
+              <div><h1>Pipes</h1>
+                <!-- Pipes allows us to transform data b4 displaying them in View -->
+                <hr>
+                  <h2>{{name1}}</h2>
+                  <h2>{{name1 | lowercase}}</h2>
+                  <h2>{{name1 | uppercase}}</h2>
+                  <h2>{{message3}}</h2>
+                  <h2>{{message3  | titlecase}}</h2>  
+                  <h2>{{name1 | slice : 3 : 5}}</h2>
+                  <h2>{{titleStyles | json}}</h2>
+  
+                  <h2>{{date}}</h2>
+                  <h2>{{date | date : 'short'}}</h2>
+                  <h2>{{date | date : 'shortDate'}}</h2>
+                  <h2>{{date | date : 'shortTime'}}</h2>
+  
+                  <!-- apart from string and date , we have number related pipes (Number,Percent,Currency) -->
+                <hr>
+                </div>   
+      </div>        
+
+      <div class="second-half">
+              <div class="StyleBinding"><h1>{{"Style Binding"}}</h1>
+                <hr>
+                      <h2 [style.color]="'Orange'">COLOR VALUE</h2>
+                      <h2 [style.color]="highlightColor">COLOR VALUE</h2>
+                      <!-- public highlightColor = "Violet"; -->
+                      <h2 [style.color]="hasError ? 'Red' : 'Green'">COLOR VALUE Based on boolean exp = False</h2>
+                      <!-- public hasError = false ;  -->
+                      <h2 [style.color]="!hasError ? 'Red' : 'Green'">COLOR VALUE Based on boolean exp = True</h2>
+                      <h2 [ngStyle]="titleStyles">{{"StyleBinding with ngStyle"}}</h2>
+                      <!-- public titleStyles = {
+                          color : "blue",
+                          fontStyle : "italic"
+                        } -->
+               <hr>
+             </div>    
+
+             <div><h1>Template Reference Variable</h1>
+              <hr>
+              <input #myInput type="text" id="log">
+              <button (click)="logMessage(myInput)" class="logInput">logInput</button>
+              <!-- we are passing the entire ref var #myInput and
+              can see the whole input element in the console: <input type="text">-->
+              <button (click)="logMessage(myInput.value)">logInputValue</button>
+              <!-- we are able to get the input value using template ref Variables -->
+              <hr>    
+              </div>
+
+
+              <div><h1>TwoWayBinding</h1>
+              <hr>
+              <input type="text" [(ngModel)]="name2" id="log">
+              <button (click)="onSubmit()">Submit</button>
+              <!-- {{"Entered Value : " + name2}}    -->
+              {{temp1}} {{name2}}
+              <!-- this.temp1 = "Entered Value : "; -->
+
+              <!-- Note: from the input the value flows from class property 
+              and from the class property the value flows back to the template
+              this ensures the view and the property are always consistent -->
+              <hr>
+              </div>
+
+
+              <div><h1>Directives </h1>
+              <hr>
+              <!-- Structural Directives are : ngIf, ngSwitch, ngFor
+              ngIf and ngSwitch are used to conditionally rendered HTML elements
+              whereas ngFor is used to renderedd a list of HTML elements -->
+              <h2>:ngIf</h2>
+              <hr>
+              <h3 *ngIf="displayName; else elseBlock">CodeEvolution Using *ngIf  </h3>
+              <ng-template #elseBlock>
+                <h3>Name is Hidden</h3>
+                </ng-template>
+              <!-- Another syntax of ngIf -->
+              <div *ngIf="!displayName2; then thenBlock; else elseBlockk"></div>
+              <ng-template #thenBlock>
+                <h3>Then Block</h3>
+              </ng-template>
+
+              <ng-template #elseBlockk>
+                <h3>Hidden</h3>
+              </ng-template>
+              <hr>
+
+              <h2>:ngSwitch</h2>
+              <hr>
+                <div [ngSwitch]="color1">
+                  <div *ngSwitchCase = '"red"'>You picked Red color</div>
+                  <div *ngSwitchCase = '"blue"'>You picked Blue color</div>
+                  <div *ngSwitchCase = '"orange"'>You picked Orange color</div>
+                  <div *ngSwitchDefault>Pick again</div>
+                </div>
+              <hr>
+
+              <h2>:ngFor</h2>
+              <hr>
+                <div *ngFor="let color of colors; index as i; first as f ; last as l ; odd as o ; even as e">
+                  <h3>{{i+1}} {{color}} {{f}} {{l}} {{o}} {{e}} </h3>
+                </div>
+                
+              <hr>
+              </div>
+
+
+              <div>  <h1>Component Interaction</h1>
+              <hr>
+              <h2>Parent to child</h2>
+                  <hr>
+                    <h3>{{"Hello "+ parentData}}</h3>
+                    <h3>{{"Hello "+ pName}}</h3>
+                  <hr>
+
+                <h2>Child to parent</h2>
+                
+                <button (click)="fireEvent()" id="fire"> Fire</button>
+              <hr>
+              </div>
+
+               
+      </div>     
+             <!-- ---------------------------------------------------------------- -->
+    </div>
+
+
+

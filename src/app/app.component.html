@@ -1,0 +1,10 @@
+<div style="text-align: center">
+    <h1>
+        Hello ?
+        <div>
+            {{message}}
+        </div>
+    </h1>
+    <hr>
+</div>
+<app-sample (childEvent)="message=$event" [parentData]="name"></app-sample>

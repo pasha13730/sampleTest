@@ -1,0 +1,97 @@
+.text-success{
+    color: green;
+}
+.text-danger{
+    color: red;
+}
+.text-special{
+    font-style: italic;
+}
+
+
+button {
+    transform: skew(-20deg);
+    background-color: #2d6da3;
+    width: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    margin-left: 72px;
+    z-index: 1;
+ }
+ #fire{
+     /* margin-left: 50px; */
+     padding: 20px ;
+     width: 15%;
+ }
+
+button:hover{
+    background-color: #da3535;
+    font-family: 'Indie Flower', cursive;
+    
+    
+} 
+
+input{
+        border-radius: 1px;
+        border-color: #12a4cc;
+        height: 22px;
+        transform: skew(-20deg);
+        margin-left: 35px;
+    }
+
+    #log{
+        margin-left: 205px;
+    }
+
+    
+     .main{
+         border: solid black;
+         background: rgba(0,0,0,0.1);
+         box-shadow: 0 0 5px black;
+     }
+
+     .main::after{
+        content: "";
+        display: block;
+        clear: both;
+     }
+
+    .second-half{
+        background: rgba(0,0,0,.07);
+        width: 47%;
+        height: 80%;
+        margin: 20px;
+        float: right;
+    }
+
+    .first-half{
+        background: rgba(0,0,0,.05);
+        width: 47%;
+        margin: 15px;
+        float: left;
+    }
+
+    h1{
+        font-family: 'Indie Flower', cursive;
+        text-align: center;
+        background-color: rgb(58, 58, 58);
+        color: #fff;
+    }
+    h1:hover{
+        background-color: gold;
+        color: black;
+    }
+
+    h3{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h2{
+        margin-left: 10px;
+    }
+
+    #greet{
+        margin-left: 250px;
+    }
